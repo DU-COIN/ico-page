@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Logo from "../assets/images/logo.png";
 import { Avatar, Divider, Stack, Typography, useTheme } from "@mui/material";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
 
@@ -46,9 +47,7 @@ export default function Header() {
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <img src={Logo} alt="logo" width={100} />
 
-        <Button variant="contained" color="info">
-          Contat wallet
-        </Button>
+       <ConnectButton/>
       </Toolbar>
       <marquee
         style={{ backgroundColor: "#000", display: "flex", gap: 2, height: 50 }}
