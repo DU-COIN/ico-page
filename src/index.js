@@ -5,7 +5,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "./assets/theme";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { bsc } from "wagmi/chains";
+import { bsc, mainnet  } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "@rainbow-me/rainbowkit/styles.css";
 import "./index.css";
@@ -16,13 +16,13 @@ import { register } from "swiper/element/bundle";
 register();
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [bsc],
+  [bsc,mainnet ],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
   appName: "RainbowKit demo",
-  projectId: "325ac3cd73b9bd3ada3a3a4520826402",
+  projectId: "4158bda2549ed637009961076548348a",
   chains,
 });
 
