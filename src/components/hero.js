@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Typography,
   Box,
@@ -14,14 +14,26 @@ import {
   InputAdornment,
   MenuItem,
 } from "@mui/material";
+import { useAccount } from "wagmi";
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import EuroIcon from "@mui/icons-material/Euro";
 import "./style.css";
+import {
+  Busd_Address,
+  Coin_Abi,
+  Ico_Abi,
+  Ico_Address,
+  Usdt_Address,
+} from "../blockchain/config";
+import { readContract } from "@wagmi/core";
+import { prepareWriteContract, writeContract } from "@wagmi/core";
+import { fetchBalance } from "@wagmi/core";
 
 function Hero(props) {
   const theme = useTheme();
+  const { address } = useAccount();
   const [values, setValues] = useState({
     coinsold: 123123123123,
     coinleft: 13123123,
@@ -33,6 +45,85 @@ function Hero(props) {
   const handleChange = (event) => {
     const { id, value } = event.target;
     setValues((previous) => ({ ...previous, [id]: value }));
+  };
+
+  const ButtonControler = async () => {
+    const balance = await fetchBalance({
+      address: Usdt_Address,
+    });
+    const data = await readContract({
+      address: "0x646918f314dE8378F47a1993dC3Fc49C21Fc815C",
+      abi: Ico_Abi,
+      functionName: "current_Price",
+    });
+    try {
+      if (address !== undefined) {
+        alert(address);
+        console.log(balance);
+        console.log(Number(data));
+        // console.log(User_Wallet)
+        if (values.selectedCurrency === "USD") {
+          if (values.enteredValue === 0) {
+            alert("Coin Amount Not selected");
+          } else {
+           Buy_Usdt()
+          }
+        }
+        if (values.selectedCurrency === "BUSD") {
+          if (values.enteredValue === 0) {
+            alert("Coin Amount Not selected");
+          } else {
+            Buy_Busd()
+          }
+        }
+      } else {
+        alert("Please Connect To your Wallet First");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const Buy_Usdt = async () => {
+    try {
+      const approve = await prepareWriteContract({
+        address: Usdt_Address,
+        abi: Coin_Abi,
+        functionName: "approve",
+        args: [Ico_Address, values.enteredValue * 10 ** 18],
+      });
+      await writeContract(approve);
+      const Buy = await prepareWriteContract({
+        address: "0xecb504d39723b0be0e3a9aa33d646642d1051ee1",
+        abi: Ico_Abi,
+        functionName: "BuyToken_Usdt_referal",
+        args: [values.enteredValue, 0],
+      });
+      await writeContract(Buy);
+    } catch (error) {
+      alert("error in buy function");
+    }
+  };
+
+  const Buy_Busd = async () => {
+    try {
+      const approve = await prepareWriteContract({
+        address: Busd_Address,
+        abi: Coin_Abi,
+        functionName: "approve",
+        args: [Ico_Address, values.enteredValue * 10 ** 18],
+      });
+      await writeContract(approve);
+      const Buy = await prepareWriteContract({
+        address: Ico_Address,
+        abi: Ico_Abi,
+        functionName: "BuyToken_Busd_referal",
+        args: [values.enteredValue, 0],
+      });
+      await writeContract(Buy);
+    } catch (error) {
+      alert("error in buy function");
+    }
   };
 
   return (
@@ -178,7 +269,7 @@ function Hero(props) {
                   variant="filled"
                   size="medium"
                   fullWidth
-                  value={234234}
+                  value={values.enteredValue * 12}
                   className="textInput"
                   sx={{
                     background: theme.palette.secondary.main,
@@ -197,8 +288,13 @@ function Hero(props) {
             </CardContent>
             <CardContent>
               <center>
-                <Button variant="contained" color="warning" size="large">
-                  Submit
+                <Button
+                  variant="contained"
+                  color="warning"
+                  size="large"
+                  onClick={ButtonControler}
+                >
+                  Buy Coin
                 </Button>
               </center>
             </CardContent>
@@ -211,7 +307,7 @@ function Hero(props) {
 
 Hero.defaultProps = {
   heading: "BUY",
-  heading:"DU-COIN.",
+  heading: "DU-COIN.",
   subHeading: `Join the DU-COIN revolution and unlock a new era of decentralized finance!`,
 };
 

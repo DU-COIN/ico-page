@@ -55,16 +55,13 @@ const ZepCoinCalculator = (props) => {
     
     useEffect(() => {
         get_data();
-    
-      
     }, [])
-    
+
     const [SoldOut, setSoldOut] = useState('1101');
     const [LeftIn, setLeftIn] = useState('1599990000');
     const [ico_per, setIcoper] = useState('0.01');
     const [ico_per_str, setIcoperstr] = useState('');
-   
-   
+
     const get_data = async() => {
         const Ico_Balnce = await new Zepcoin_Cn.balanceOf(Ico_Address);
         const val =  BigInt(Ico_Balnce);
