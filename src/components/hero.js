@@ -51,7 +51,7 @@ function Hero(props) {
    
     try {
       if (address !== undefined) {
-        alert(address);
+      
         // console.log(User_Wallet)
         if (values.selectedCurrency === "USD") {
           if (values.enteredValue === 0) {
