@@ -93,6 +93,7 @@ function Hero(props) {
       await writeContract(Buy);
     } catch (error) {
       alert("error in buy function");
+      console.log(error)
     }
   };
 
@@ -113,6 +114,7 @@ function Hero(props) {
       });
       await writeContract(Buy);
     } catch (error) {
+      console.log(error)
       alert("error in buy function");
     }
   };
