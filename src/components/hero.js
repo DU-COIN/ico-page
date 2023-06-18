@@ -48,23 +48,21 @@ function Hero(props) {
   };
 
   const ButtonControler = async () => {
-   
     try {
       if (address !== undefined) {
-      
         // console.log(User_Wallet)
         if (values.selectedCurrency === "USD") {
           if (values.enteredValue === 0) {
             alert("Coin Amount Not selected");
           } else {
-           Buy_Usdt()
+            Buy_Usdt();
           }
         }
         if (values.selectedCurrency === "BUSD") {
           if (values.enteredValue === 0) {
             alert("Coin Amount Not selected");
           } else {
-            Buy_Busd()
+            Buy_Busd();
           }
         }
       } else {
@@ -81,7 +79,10 @@ function Hero(props) {
         address: Usdt_Address,
         abi: Coin_Abi,
         functionName: "approve",
-        args: [Ico_Address, values.enteredValue * 10 ** 18],/* global BigInt */
+        args: [
+          Ico_Address,
+          BigInt(values.enteredValue * 10 ** 18),
+        ] /* global BigInt */,
       });
       await writeContract(approve);
       const Buy = await prepareWriteContract({
@@ -93,21 +94,18 @@ function Hero(props) {
       await writeContract(Buy);
     } catch (error) {
       alert("error in buy function");
-      console.log(error)
+      console.log(error);
     }
   };
 
   const Buy_Busd = async () => {
     try {
-      const enteredValue = BigInt(values.enteredValue);
-const multipliedValue = enteredValue * BigInt(10 ** 18);
-
-const approve = await prepareWriteContract({
-  address: Usdt_Address,
-  abi: Coin_Abi,
-  functionName: "approve",
-  args: [Ico_Address, multipliedValue.toString()],
-});
+      const approve = await prepareWriteContract({
+        address: Usdt_Address,
+        abi: Coin_Abi,
+        functionName: "approve",
+        args: [Ico_Address, BigInt(values.enteredValue * 10 ** 18)],
+      });
       await writeContract(approve);
       const Buy = await prepareWriteContract({
         address: Ico_Address,
@@ -117,7 +115,7 @@ const approve = await prepareWriteContract({
       });
       await writeContract(Buy);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       alert("error in buy function");
     }
   };
