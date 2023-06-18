@@ -48,19 +48,10 @@ function Hero(props) {
   };
 
   const ButtonControler = async () => {
-    const balance = await fetchBalance({
-      address: Usdt_Address,
-    });
-    const data = await readContract({
-      address: "0x646918f314dE8378F47a1993dC3Fc49C21Fc815C",
-      abi: Ico_Abi,
-      functionName: "current_Price",
-    });
+   
     try {
       if (address !== undefined) {
         alert(address);
-        console.log(balance);
-        console.log(Number(data));
         // console.log(User_Wallet)
         if (values.selectedCurrency === "USD") {
           if (values.enteredValue === 0) {
