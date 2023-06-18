@@ -81,7 +81,7 @@ function Hero(props) {
         address: Usdt_Address,
         abi: Coin_Abi,
         functionName: "approve",
-        args: [Ico_Address, values.enteredValue * 10 ** 18],
+        args: [Ico_Address, values.enteredValue * 10 ** 18],/* global BigInt */
       });
       await writeContract(approve);
       const Buy = await prepareWriteContract({
@@ -99,12 +99,15 @@ function Hero(props) {
 
   const Buy_Busd = async () => {
     try {
-      const approve = await prepareWriteContract({
-        address: Busd_Address,
-        abi: Coin_Abi,
-        functionName: "approve",
-        args: [Ico_Address, values.enteredValue * 10 ** 18],
-      });
+      const enteredValue = BigInt(values.enteredValue);
+const multipliedValue = enteredValue * BigInt(10 ** 18);
+
+const approve = await prepareWriteContract({
+  address: Usdt_Address,
+  abi: Coin_Abi,
+  functionName: "approve",
+  args: [Ico_Address, multipliedValue.toString()],
+});
       await writeContract(approve);
       const Buy = await prepareWriteContract({
         address: Ico_Address,
