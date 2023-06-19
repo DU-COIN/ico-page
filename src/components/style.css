@@ -1,12 +1,16 @@
 .hero {
   height: 100%;
+  margin:3%;
 }
 
 .hero .coinCard {
-  width: 500px;
-  height: auto;
-  background-color: #0a0f35;
+  width: 50%;
+  height: 520px;
+  background-color: #faa8044b;
   color: var(--text-color);
+  padding: 4%;
+  box-shadow: 10px 10px 100px 0px white inset;
+
 }
 
 .hero .coinCard .wrapperBox {

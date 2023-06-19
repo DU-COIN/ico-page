@@ -57,9 +57,10 @@ export default function Header() {
           {new Array(20)
             .fill({
               logo: "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
-              name: "BTCUSD",
-              value: "10,000",
-            })
+              name: "BTC",
+              value: "$26525",
+            }
+            )
             .map((_, i) => (
               <CoinView key={i} {..._} />
             ))}

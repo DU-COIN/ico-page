@@ -19,6 +19,7 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import EuroIcon from "@mui/icons-material/Euro";
+import coin from "../assets/images/Coin.png";
 import "./style.css";
 import {
   Busd_Address,
@@ -123,7 +124,7 @@ function Hero(props) {
   return (
     <section className="hero">
       <Grid container spacing={10} sx={{ height: "100%" }}>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Stack spacing={4} justifyContent={"center"} height={"100%"}>
             <Box className="content">
               <Typography gutterBottom variant="h2" fontWeight={"bold"}>
@@ -151,11 +152,11 @@ function Hero(props) {
               </IconButton>
             </Stack>
           </Stack>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={12}
-          md={6}
+          md={12}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -182,7 +183,7 @@ function Hero(props) {
                   fontWeight={"bold"}
                   color={theme.palette.warning.main}
                 >
-                  DuCoin
+                  <img src={coin} height={100} width={100}/>
                 </Typography>
               }
               // subheader={
