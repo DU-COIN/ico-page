@@ -20,6 +20,7 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import EuroIcon from "@mui/icons-material/Euro";
 import coin from "../assets/images/Coin.png";
+import Big from "big.js";
 import "./style.css";
 import {
   Busd_Address,
@@ -35,7 +36,7 @@ function Hero(props) {
   const { address } = useAccount();
   const [values, setValues] = useState({
     coinsold: 123123,
-    coinleft: 1312323,
+    coinleft: 13123123,
     enteredValue: 1,
     selectedCurrency: "BUSD",
     convertedValue: 0,
@@ -90,22 +91,23 @@ function Hero(props) {
 
   const Buy_Usdt = async () => {
     try {
-      await approve(Usdt_Address, Ico_Address, BigInt(values.enteredValue*10**18));
-      await buyToken(Usdt_Address, BigInt(values.enteredValue*10**18));
+      await approve(Usdt_Address, Ico_Address, values.enteredValue.times("10").pow(18));
+      await buyToken(Usdt_Address, values.enteredValue.times("10").pow(18));
     } catch (error) {
       alert("Error in buy function");
       console.log(error);
     }
   };
-
+  
   const Buy_Busd = async () => {
     try {
-      await approve(Busd_Address, Ico_Address, BigInt(values.enteredValue*10**18));
-      await buyToken(Busd_Address, BigInt(values.enteredValue*10**18));
+      await approve(Busd_Address, Ico_Address, values.enteredValue.times("10").pow(18));
+      await buyToken(Busd_Address, values.enteredValue.times("10").pow(18));
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   return (
     <section className="hero">
