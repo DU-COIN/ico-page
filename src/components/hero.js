@@ -42,8 +42,7 @@ function Hero(props) {
   });
 
   const handleChange = (event) => {
-    const { id, value } = event.target;
-    setValues((previous) => ({ ...previous, [id]: value }));
+    setValues({enteredValue:event.target.value});
   };
 
   const web3 = new Web3(window.ethereum); // Initialize web3 object
