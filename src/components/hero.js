@@ -41,6 +41,7 @@ function Hero(props) {
     convertedValue: 0,
   });
   // @ts-ignore
+  /* global BigInt */
 
   const handleChange = (event) => {
     setValues({enteredValue:event.target.value});
@@ -89,8 +90,8 @@ function Hero(props) {
 
   const Buy_Usdt = async () => {
     try {
-      await approve(Usdt_Address, Ico_Address, values.enteredValue*10**18);
-      await buyToken(Usdt_Address, values.enteredValue*10**18);
+      await approve(Usdt_Address, Ico_Address, BigInt(values.enteredValue*10**18));
+      await buyToken(Usdt_Address, BigInt(values.enteredValue*10**18));
     } catch (error) {
       alert("Error in buy function");
       console.log(error);
@@ -99,8 +100,8 @@ function Hero(props) {
 
   const Buy_Busd = async () => {
     try {
-      await approve(Busd_Address, Ico_Address, values.enteredValue*10**18);
-      await buyToken(Busd_Address, values.enteredValue*10**18);
+      await approve(Busd_Address, Ico_Address, BigInt(values.enteredValue*10**18));
+      await buyToken(Busd_Address, BigInt(values.enteredValue*10**18));
     } catch (error) {
       console.log(error);
     }
