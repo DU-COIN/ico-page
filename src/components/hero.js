@@ -28,9 +28,6 @@ import {
   Ico_Address,
   Usdt_Address,
 } from "../blockchain/config";
-import { readContract } from "@wagmi/core";
-import { prepareWriteContract, writeContract } from "@wagmi/core";
-import { fetchBalance } from "@wagmi/core";
 import Web3 from "web3";
 
 function Hero(props) {
