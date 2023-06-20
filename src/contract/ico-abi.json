@@ -5,11 +5,6 @@
                 "internalType": "address",
                 "name": "_Admin_Wallet",
                 "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "_ico_coin",
-                "type": "address"
             }
         ],
         "stateMutability": "nonpayable",
@@ -39,16 +34,11 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "_Amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_Referal_Id",
+                "name": "busd_Amount",
                 "type": "uint256"
             }
         ],
-        "name": "BuyToken_Busd_Special",
+        "name": "BuyToken_busd",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -57,52 +47,11 @@
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "_Amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_Referal_Id",
+                "name": "Usdt_Amount",
                 "type": "uint256"
             }
         ],
-        "name": "BuyToken_Busd_referal",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_Amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_Referal_Id",
-                "type": "uint256"
-            }
-        ],
-        "name": "BuyToken_Usdt_Special",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_Amount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_Referal_Id",
-                "type": "uint256"
-            }
-        ],
-        "name": "BuyToken_Usdt_referal",
+        "name": "BuyToken_usdt",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -121,214 +70,10 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "New_Url",
-                "type": "string"
-            }
-        ],
-        "name": "Change_Url",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "ExtraReward",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_address",
-                "type": "address"
-            }
-        ],
-        "name": "GetUser_Id",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "_id",
-                "type": "uint256"
-            }
-        ],
-        "name": "GetUser_address",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_user_address",
-                "type": "address"
-            }
-        ],
-        "name": "Get_referal_url",
-        "outputs": [
-            {
-                "internalType": "string",
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "TGC_Ammount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address",
-                "name": "Reciver",
-                "type": "address"
-            }
-        ],
-        "name": "Private_sale",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "REFRAL_EARNING",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "Referal_Percentage",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "NewLimit",
-                "type": "uint256"
-            }
-        ],
-        "name": "Set_MinimumLimit",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "New_Amount",
-                "type": "uint256"
-            }
-        ],
-        "name": "Set_NewReward",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bool",
-                "name": "_command",
-                "type": "bool"
-            }
-        ],
-        "name": "SpecialBuy_Switch",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [],
         "name": "StopIco",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "Total_member",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "name": "_referal_address",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -345,45 +90,6 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_new_address",
-                "type": "address"
-            }
-        ],
-        "name": "change_ico_coin",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "current_Price",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "get_coin_bal",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [],
         "name": "icoStatus",
         "outputs": [
@@ -391,19 +97,6 @@
                 "internalType": "bool",
                 "name": "",
                 "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "ico_coin",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -424,38 +117,12 @@
     },
     {
         "inputs": [],
-        "name": "minimum_limit",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
         "name": "owner",
         "outputs": [
             {
                 "internalType": "address",
                 "name": "",
                 "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "reward_status",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
             }
         ],
         "stateMutability": "view",
@@ -472,6 +139,19 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "du_amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "withdraw_unsoldZEPX",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     }
 ]

@@ -15,6 +15,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useAccount } from "wagmi";
+import { ethers } from "ethers"; // Import ethers from Ether.js
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
@@ -29,7 +30,6 @@ import {
   Ico_Address,
   Usdt_Address,
 } from "../blockchain/config";
-import Web3 from "web3";
 
 function Hero(props) {
   const theme = useTheme();
@@ -45,23 +45,21 @@ function Hero(props) {
   /* global BigInt */
 
   const handleChange = (event) => {
-    setValues({enteredValue:event.target.value});
+    setValues({ ...values, [event.target.id]: event.target.value });
   };
 
-  const web3 = new Web3(window.ethereum); // Initialize web3 object
+  const provider = new ethers.providers.Web3Provider(window.ethereum); // Initialize ethers provider
 
   const approve = async (tokenAddress, spender, amount) => {
-    const contract = new web3.eth.Contract(Coin_Abi, tokenAddress);
-    const accounts = await web3.eth.getAccounts();
-    await contract.methods
-      .approve(spender, amount)
-      .send({ from: accounts[0] });
+    const contract = new ethers.Contract(tokenAddress, Coin_Abi, provider.getSigner());
+    const accounts = await provider.listAccounts();
+    await contract.approve(spender, amount);
   };
 
   const buyToken = async (tokenAddress, amount) => {
-    const contract = new web3.eth.Contract(Ico_Abi, Ico_Address);
-    const accounts = await web3.eth.getAccounts();
-    await contract.methods.BuyToken_busd(amount).send({ from: accounts[0] });
+    const contract = new ethers.Contract(Ico_Address, Ico_Abi, provider.getSigner());
+    const accounts = await provider.listAccounts();
+    await contract.BuyToken_busd(amount);
   };
 
   const ButtonControler = async () => {
@@ -91,8 +89,8 @@ function Hero(props) {
 
   const Buy_Usdt = async () => {
     try {
-      await approve(Usdt_Address, Ico_Address, values.enteredValue.times("10").pow(18));
-      await buyToken(Usdt_Address, values.enteredValue.times("10").pow(18));
+      await approve(Usdt_Address, Ico_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
+      await buyToken(Usdt_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
     } catch (error) {
       alert("Error in buy function");
       console.log(error);
@@ -101,8 +99,8 @@ function Hero(props) {
   
   const Buy_Busd = async () => {
     try {
-      await approve(Busd_Address, Ico_Address, values.enteredValue.times("10").pow(18));
-      await buyToken(Busd_Address, values.enteredValue.times("10").pow(18));
+      await approve(Busd_Address, Ico_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
+      await buyToken(Busd_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
     } catch (error) {
       console.log(error);
     }
@@ -171,7 +169,7 @@ function Hero(props) {
                   fontWeight={"bold"}
                   color={theme.palette.warning.main}
                 >
-                  <img src={coin} height={100} width={100}/>
+                  <img src={coin} height={100} width={100} alt="Coin"/>
                 </Typography>
               }
               // subheader={
