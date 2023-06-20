@@ -34,8 +34,8 @@ function Hero(props) {
   const theme = useTheme();
   const { address } = useAccount();
   const [values, setValues] = useState({
-    coinsold: 123123123123,
-    coinleft: 13123123,
+    coinsold: 123123,
+    coinleft: 1312323,
     enteredValue: 1,
     selectedCurrency: "BUSD",
     convertedValue: 0,
