@@ -40,6 +40,7 @@ function Hero(props) {
     selectedCurrency: "BUSD",
     convertedValue: 0,
   });
+  // @ts-ignore
 
   const handleChange = (event) => {
     setValues({enteredValue:event.target.value});
