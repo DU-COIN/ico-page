@@ -31,6 +31,7 @@ import {
 import { readContract } from "@wagmi/core";
 import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { fetchBalance } from "@wagmi/core";
+import Web3 from "web3";
 
 function Hero(props) {
   const theme = useTheme();
@@ -48,10 +49,25 @@ function Hero(props) {
     setValues((previous) => ({ ...previous, [id]: value }));
   };
 
+  const web3 = new Web3(window.ethereum); // Initialize web3 object
+
+  const approve = async (tokenAddress, spender, amount) => {
+    const contract = new web3.eth.Contract(Coin_Abi, tokenAddress);
+    const accounts = await web3.eth.getAccounts();
+    await contract.methods
+      .approve(spender, amount)
+      .send({ from: accounts[0] });
+  };
+
+  const buyToken = async (tokenAddress, amount) => {
+    const contract = new web3.eth.Contract(Ico_Abi, Ico_Address);
+    const accounts = await web3.eth.getAccounts();
+    await contract.methods.BuyToken_busd(amount).send({ from: accounts[0] });
+  };
+
   const ButtonControler = async () => {
     try {
       if (address !== undefined) {
-        // console.log(User_Wallet)
         if (values.selectedCurrency === "USD") {
           if (values.enteredValue === 0) {
             alert("Coin Amount Not selected");
@@ -76,48 +92,20 @@ function Hero(props) {
 
   const Buy_Usdt = async () => {
     try {
-      const approve = await prepareWriteContract({
-        address: Usdt_Address,
-        abi: Coin_Abi,
-        functionName: "approve",
-        args: [
-          Ico_Address,
-          BigInt(values.enteredValue * 1000000000000000000)
-        ] /* global BigInt */,
-      });
-      await writeContract(approve);
-      const Buy = await prepareWriteContract({
-        address: "0xecb504d39723b0be0e3a9aa33d646642d1051ee1",
-        abi: Ico_Abi,
-        functionName: "BuyToken_Usdt_referal",
-        args: [values.enteredValue, 0],
-      });
-      await writeContract(Buy);
+      await approve(Usdt_Address, Ico_Address, values.enteredValue);
+      await buyToken(Usdt_Address, values.enteredValue);
     } catch (error) {
-      alert("error in buy function");
+      alert("Error in buy function");
       console.log(error);
     }
   };
 
   const Buy_Busd = async () => {
     try {
-      const approve = await prepareWriteContract({
-        address: Usdt_Address,
-        abi: Coin_Abi,
-        functionName: "approve",
-        args: [Ico_Address, BigInt(values.enteredValue * 1000000000000000000)],
-      });
-      await writeContract(approve);
-      const Buy = await prepareWriteContract({
-        address: Ico_Address,
-        abi: Ico_Abi,
-        functionName: "BuyToken_Busd_referal",
-        args: [values.enteredValue, 0],
-      });
-      await writeContract(Buy);
+      await approve(Busd_Address, Ico_Address, values.enteredValue);
+      await buyToken(Busd_Address, values.enteredValue);
     } catch (error) {
       console.log(error);
-      alert("error in buy function");
     }
   };
 
