@@ -48,7 +48,7 @@ function Hero(props) {
     setValues({ ...values, [event.target.id]: event.target.value });
   };
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum); // Initialize ethers provider
+  let provider;// Initialize ethers provider
 
   const approve = async (tokenAddress, spender, amount) => {
     const contract = new ethers.Contract(tokenAddress, Coin_Abi, provider.getSigner());
@@ -63,6 +63,7 @@ function Hero(props) {
   };
 
   const ButtonControler = async () => {
+   provider = new ethers.providers.Web3Provider(window.ethereum); 
     try {
       if (address !== undefined) {
         if (values.selectedCurrency === "USD") {
