@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Logo from ".././assets/images/logo.png";
 import {
   Typography,
   Box,
@@ -13,6 +14,8 @@ import {
   CardHeader,
   InputAdornment,
   MenuItem,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import { useAccount } from "wagmi";
 import { ethers } from "ethers"; // Import ethers from Ether.js
@@ -28,12 +31,18 @@ import {
   Coin_Abi,
   Ico_Abi,
   Ico_Address,
+  RpcUrl,
   Usdt_Address,
 } from "../blockchain/config";
+import { WalletConnect } from "../blockchain/wallet";
+import { Await } from "react-router-dom";
+
+
 
 function Hero(props) {
   const theme = useTheme();
-  const { address } = useAccount();
+const [Dapp_Provider, setDapp_Provider] = useState(undefined)
+const [User_Wallet, setUser_Wallet] = useState(undefined)
   const [values, setValues] = useState({
     coinsold: 123123,
     coinleft: 13123123,
@@ -43,28 +52,33 @@ function Hero(props) {
   });
   // @ts-ignore
   /* global BigInt */
+  const connectWallet = async() => {
+    const obj = await WalletConnect();
+ setDapp_Provider(obj.signer)
+setUser_Wallet(obj.Address)
+  }
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.id]: event.target.value });
   };
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum); // Initialize ethers provider
+
 
   const approve = async (tokenAddress, spender, amount) => {
-    const contract = new ethers.Contract(tokenAddress, Coin_Abi, provider.getSigner());
-    const accounts = await provider.listAccounts();
+    const contract = new ethers.Contract(tokenAddress, Coin_Abi, Dapp_Provider);
+    const accounts = User_Wallet;
     await contract.approve(spender, amount);
   };
 
   const buyToken = async (tokenAddress, amount) => {
-    const contract = new ethers.Contract(Ico_Address, Ico_Abi, provider.getSigner());
-    const accounts = await provider.listAccounts();
+    const contract = new ethers.Contract(Ico_Address, Ico_Abi, Dapp_Provider);
+    const accounts = User_Wallet;
     await contract.BuyToken_busd(amount);
   };
 
   const ButtonControler = async () => {
     try {
-      if (address !== undefined) {
+      if (Dapp_Provider !== undefined) {
         if (values.selectedCurrency === "USD") {
           if (values.enteredValue === 0) {
             alert("Coin Amount Not selected");
@@ -97,6 +111,7 @@ function Hero(props) {
     }
   };
   
+  
   const Buy_Busd = async () => {
     try {
       await approve(Busd_Address, Ico_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
@@ -106,8 +121,22 @@ function Hero(props) {
     }
   };
   
+  
 
-  return (
+  return (<>
+    <div
+    sx={{ backgroundColor: theme.palette.primary.dark }}
+
+  >
+    <Toolbar sx={{ justifyContent: "space-between" }}>
+      <img src={Logo} alt="logo" width={100} />
+      {Dapp_Provider?(<></>):(<button onClick={connectWallet} className="connect-btn">connect Wallet</button>)}
+
+     
+    </Toolbar>
+   
+   
+  </div>
     <section className="hero">
       <Grid container spacing={10} sx={{ height: "100%" }}>
         {/* <Grid item xs={12} md={6}>
@@ -282,7 +311,7 @@ function Hero(props) {
           </Card>
         </Grid>
       </Grid>
-    </section>
+    </section></>
   );
 }
 
@@ -291,5 +320,7 @@ Hero.defaultProps = {
   heading: "DU-COIN.",
   subHeading: `Join the DU-COIN revolution and unlock a new era of decentralized finance!`,
 };
+
+
 
 export default Hero;

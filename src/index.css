@@ -1,7 +1,18 @@
 #root {
   height: 100%;
+   
 }
 
+
+:root {
+  --account-center-position-top:"top";
+  --onboard-modal-top:"top";
+}
 a {
   text-decoration: none;
+}
+
+.connect-btn {
+  background-color: red;
+  z-index: 200 !important;
 }
