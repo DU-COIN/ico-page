@@ -1,6 +1,6 @@
 
 import Hero from "./components/hero";
-import Footer from "./layout/footer";
+// import Footer from "./layout/footer";
 import { Card, CardContent, Container, useTheme } from "@mui/material";
 
 function App() {

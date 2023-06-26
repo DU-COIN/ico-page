@@ -27,6 +27,7 @@ import coin from "../assets/images/Coin.png";
 import Big from "big.js";
 import "./style.css";
 import {
+  Ducoin_Address,
   Busd_Address,
   Coin_Abi,
   Ico_Abi,
@@ -37,20 +38,41 @@ import {
 import { WalletConnect } from "../blockchain/wallet";
 import { Await } from "react-router-dom";
 
+const providerx = new ethers.providers.JsonRpcProvider(
+  RpcUrl,
+);
 
-
+// const Ducoin_Cn = new ethers.Contract(Ducoin_Address, Ico_Abi, providerx);
+// const Ico_Cn = new ethers.Contract(Ico_Address, Ico_Abi, providerx)
+// console.log(Ducoin_Cn)
 function Hero(props) {
   const theme = useTheme();
+ 
 const [Dapp_Provider, setDapp_Provider] = useState(undefined)
 const [User_Wallet, setUser_Wallet] = useState(undefined)
   const [values, setValues] = useState({
-    coinsold: 123123,
-    coinleft: 13123123,
+  
     enteredValue: 1,
     selectedCurrency: "BUSD",
     convertedValue: 0,
   });
-  // @ts-ignore
+  // const [SoldOut, setSoldOut] = useState('1101');
+  // const [LeftIn, setLeftIn] = useState('15999900');
+  // const get_data = async() => {
+  //   // console.log(Ducoin_Cn);
+  //   const Ico_Balnce =  await new Ducoin_Cn.balanceOf(Ico_Address);
+  //   // console.log(Ico_Balnce);
+  //   const val =  BigInt(Ico_Balnce);
+  //   // console.log(val);
+  //   const actual = 25000000;
+  //   const LeftIn = String(val).slice(0, 11);
+  //   const SoldOut = (actual - Number(LeftIn));
+    
+  //   setSoldOut(SoldOut);
+  //   setLeftIn(LeftIn);
+  
+// }
+  // @ts-ignores
   /* global BigInt */
   const connectWallet = async() => {
     const obj = await WalletConnect();
@@ -63,6 +85,9 @@ setUser_Wallet(obj.Address)
   };
 
 
+//   useEffect(() => {
+//     get_data();
+// }, [])
 
   const approve = async (tokenAddress, spender, amount) => {
     const contract = new ethers.Contract(tokenAddress, Coin_Abi, Dapp_Provider);
@@ -121,7 +146,7 @@ setUser_Wallet(obj.Address)
     }
   };
   
-  
+ 
 
   return (<>
     <div
@@ -129,14 +154,14 @@ setUser_Wallet(obj.Address)
 
   >
     <Toolbar sx={{ justifyContent: "space-between" }}>
-      <img src={Logo} alt="logo" width={100} />
-      {Dapp_Provider?(<></>):(<button onClick={connectWallet} className="connect-btn">connect Wallet</button>)}
+    <img src={Logo} alt="logo" width={100} />
+      {Dapp_Provider?(<></>):(<button  onClick={connectWallet } className="connect-btn"><h4>Connect</h4></button>)}
 
-     
-    </Toolbar>
+        </Toolbar>
    
    
   </div>
+  
     <section className="hero">
       <Grid container spacing={10} sx={{ height: "100%" }}>
         {/* <Grid item xs={12} md={6}>
@@ -199,13 +224,15 @@ setUser_Wallet(obj.Address)
                   color={theme.palette.warning.main}
                 >
                   <img src={coin} height={100} width={100} alt="Coin"/>
+                 
                 </Typography>
+                 
               }
               // subheader={
               //   <Typography variant="body2">A TOKEN TO THE DUVERSE</Typography>
               // }
             />
-            <CardContent>
+            {/* <CardContent>
               <Stack direction="row" spacing={2}>
                 <Box sx={{ flex: 1 }}>
                   <Typography
@@ -216,7 +243,7 @@ setUser_Wallet(obj.Address)
                     $DUCOIN Sold
                   </Typography>
                   <Box className="wrapperBox">
-                    <Typography>{values.coinsold}</Typography>
+                    <Typography>{SoldOut}</Typography>
                   </Box>
                 </Box>
                 <Box sx={{ flex: 1 }}>
@@ -228,13 +255,13 @@ setUser_Wallet(obj.Address)
                     $DUCOIN Left
                   </Typography>
                   <Box className="wrapperBox">
-                    <Typography>{values.coinleft}</Typography>
+                    <Typography>{LeftIn}</Typography>
                   </Box>
                 </Box>
               </Stack>
-            </CardContent>
+            </CardContent> */}
             <CardContent>
-              <Stack direction="row" spacing={2}>
+              <Stack direction="column" spacing={2}>
                 <TextField
                   hiddenLabel
                   variant="filled"

@@ -30,10 +30,10 @@ const onboard = Onboard({
         }
     ],
     appMetadata: {
-        name: "My App",
+        name: "DuCoin",
         icon: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
         logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-        description: "ZepCash",
+        description: "Du-Coin",
         recommendedInjectedWallets: [
             { name: "MetaMask", url: "https://metamask.io" }
         ]
