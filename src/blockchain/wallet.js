@@ -51,7 +51,7 @@ const onboard = Onboard({
             position:"topRight"
         },
         desktop:{
-            position:"bottomLeft",
+            position:"TopRight",
             
         }
 
