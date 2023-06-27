@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Logo from ".././assets/images/logo.png";
 import {
   Typography,
-  Box,
+  // Box,
   useTheme,
   Stack,
   Grid,
-  IconButton,
+  // IconButton,
   Card,
   CardContent,
   TextField,
@@ -14,10 +14,10 @@ import {
   CardHeader,
   InputAdornment,
   MenuItem,
-  AppBar,
+  // AppBar,
   Toolbar,
 } from "@mui/material";
-import { useAccount } from "wagmi";
+// import { useAccount } from "wagmi";
 import { ethers } from "ethers"; // Import ethers from Ether.js
 import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
@@ -27,7 +27,7 @@ import coin from "../assets/images/Coin.png";
 import Big from "big.js";
 import "./style.css";
 import {
-  Ducoin_Address,
+  // Ducoin_Address,
   Busd_Address,
   Coin_Abi,
   Ico_Abi,
@@ -37,7 +37,7 @@ import {
 } from "../blockchain/config";
 
 import { WalletConnect } from "../blockchain/wallet";
-import { Await } from "react-router-dom";
+// import { Await } from "react-router-dom";
 
 
 const providerx = new ethers.providers.JsonRpcProvider(
@@ -112,7 +112,7 @@ setUser_Wallet(obj.Address)
   };
 
   const ButtonControler = async () => {
-   provider = new ethers.providers.Web3Provider(window.ethereum); 
+  //  provider = new ethers.providers.Web3Provider(window.ethereum); 
     try {
       if (Dapp_Provider !== undefined) {
         if (values.selectedCurrency === "USD") {
