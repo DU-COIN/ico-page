@@ -35,8 +35,10 @@ import {
   RpcUrl,
   Usdt_Address,
 } from "../blockchain/config";
+
 import { WalletConnect } from "../blockchain/wallet";
 import { Await } from "react-router-dom";
+
 
 const providerx = new ethers.providers.JsonRpcProvider(
   RpcUrl,
@@ -51,7 +53,10 @@ function Hero(props) {
 const [Dapp_Provider, setDapp_Provider] = useState(undefined)
 const [User_Wallet, setUser_Wallet] = useState(undefined)
   const [values, setValues] = useState({
-  
+
+    coinsold: 123123,
+    coinleft: 13123123,
+
     enteredValue: 1,
     selectedCurrency: "BUSD",
     convertedValue: 0,
@@ -85,6 +90,7 @@ setUser_Wallet(obj.Address)
   };
 
 
+
 //   useEffect(() => {
 //     get_data();
 // }, [])
@@ -92,16 +98,21 @@ setUser_Wallet(obj.Address)
   const approve = async (tokenAddress, spender, amount) => {
     const contract = new ethers.Contract(tokenAddress, Coin_Abi, Dapp_Provider);
     const accounts = User_Wallet;
+
+
     await contract.approve(spender, amount);
   };
 
   const buyToken = async (tokenAddress, amount) => {
+
     const contract = new ethers.Contract(Ico_Address, Ico_Abi, Dapp_Provider);
     const accounts = User_Wallet;
+
     await contract.BuyToken_busd(amount);
   };
 
   const ButtonControler = async () => {
+   provider = new ethers.providers.Web3Provider(window.ethereum); 
     try {
       if (Dapp_Provider !== undefined) {
         if (values.selectedCurrency === "USD") {
@@ -136,7 +147,7 @@ setUser_Wallet(obj.Address)
     }
   };
   
-  
+
   const Buy_Busd = async () => {
     try {
       await approve(Busd_Address, Ico_Address, ethers.BigNumber.from(values.enteredValue).mul(10).pow(18));
@@ -146,6 +157,7 @@ setUser_Wallet(obj.Address)
     }
   };
   
+
  
 
   return (<>
@@ -156,6 +168,7 @@ setUser_Wallet(obj.Address)
     <Toolbar sx={{ justifyContent: "space-between" }}>
     <img src={Logo} alt="logo" width={100} />
       {Dapp_Provider?(<></>):(<button  onClick={connectWallet } className="connect-btn"><h4>Connect</h4></button>)}
+
 
         </Toolbar>
    
@@ -224,7 +237,7 @@ setUser_Wallet(obj.Address)
                   color={theme.palette.warning.main}
                 >
                   <img src={coin} height={100} width={100} alt="Coin"/>
-                 
+
                 </Typography>
                  
               }
