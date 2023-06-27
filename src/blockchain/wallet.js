@@ -1,7 +1,7 @@
 import walletConnectModule from "@web3-onboard/walletconnect";
 import injectedModule from "@web3-onboard/injected-wallets";
 import Onboard from "@web3-onboard/core";
-import { ToastError, ToastSuccess } from "../components/toast";
+
 import { ethers } from "ethers";
 import { RpcUrl } from "./config";
 
@@ -30,13 +30,31 @@ const onboard = Onboard({
         }
     ],
     appMetadata: {
-        name: "My App",
+        name: "DuCoin",
         icon: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
         logo: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
-        description: "ZepCash",
+        description: "Du-Coin",
         recommendedInjectedWallets: [
             { name: "MetaMask", url: "https://metamask.io" }
         ]
+    }
+    ,notify:{
+        mobile:{
+            position:"topRight"
+        },
+        desktop:{
+            position:"topRight"
+        }
+    }
+    , accountCenter:{
+        mobile:{
+            position:"topRight"
+        },
+        desktop:{
+            position:"bottomRight",
+            
+        }
+
     }
 });
 
@@ -51,11 +69,9 @@ export const WalletConnect = async () => {
             Chain: chains[0],
             signer: ethersProvider.getSigner()
         }
-        ToastSuccess('Connected To ' + accounts[0].address.slice(0, 4) + '...' + accounts[0].address.slice(-3) + 'Sucessfully')
         return obj;
     } catch (error) {
         console.log('Error In Wallet Connect:' + error)
-        ToastError("Erorr in Wallet Connect");
     }
 }
 //  export const get_url = async () => {

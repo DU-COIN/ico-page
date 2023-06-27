@@ -1,6 +1,6 @@
-import Header from "./layout/header";
+
 import Hero from "./components/hero";
-import Footer from "./layout/footer";
+// import Footer from "./layout/footer";
 import { Card, CardContent, Container, useTheme } from "@mui/material";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
     //     elevation={10}
     //   >
         <CardContent sx={{ height: "100%" }}>
-          <Header />
+          {/* <Header /> */}
           <Hero />
           {/* <Footer /> */}
         </CardContent>
