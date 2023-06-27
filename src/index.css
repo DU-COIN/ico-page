@@ -40,3 +40,6 @@ button:hover {
   animation: box 3s infinite;
 }
 
+.modal-container-mobile.svelte-baitaa {
+  bottom: 15% !important;
+}
