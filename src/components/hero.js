@@ -306,7 +306,7 @@ setUser_Wallet(obj.Address)
                   variant="filled"
                   size="medium"
                   fullWidth
-                  value={values.enteredValue * 12}
+                  value={values.enteredValue * 15}
                   className="textInput"
                   sx={{
                     background: theme.palette.secondary.main,
@@ -316,7 +316,7 @@ setUser_Wallet(obj.Address)
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <Typography>$COIN</Typography>
+                        <Typography>DU</Typography>
                       </InputAdornment>
                     ),
                   }}
