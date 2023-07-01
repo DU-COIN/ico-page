@@ -6,7 +6,7 @@ import { ethers } from "ethers";
 import { RpcUrl } from "./config";
 
 let wcV2={
-    projectId:'061a7b5683a800c283e848fd640236c6',
+    projectId:'24d6d6cdd40b14519b7a5bfe822f6853',
     requiredChains: [56],
 }
 // const walletConnect = walletConnectModule(

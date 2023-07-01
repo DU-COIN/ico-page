@@ -18,8 +18,8 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "RainbowKit demo",
-  projectId: "325ac3cd73b9bd3ada3a3a4520826402",
+  appName: "DuCoin",
+  projectId: "24d6d6cdd40b14519b7a5bfe822f6853",
   chains,
 });
 
