@@ -81,8 +81,8 @@ const [User_Wallet, setUser_Wallet] = useState(undefined)
   /* global BigInt */
   const connectWallet = async() => {
     const obj = await WalletConnect();
- setDapp_Provider(obj.signer)
-setUser_Wallet(obj.Address)
+ setDapp_Provider(obj?.signer)
+setUser_Wallet(obj?.Address)
   }
 
   const handleChange = (event) => {

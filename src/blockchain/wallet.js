@@ -5,15 +5,20 @@ import Onboard from "@web3-onboard/core";
 import { ethers } from "ethers";
 import { RpcUrl } from "./config";
 
-
-const walletConnect = walletConnectModule(
-    {
-        bridge: 'https://bridge.walletconnect.org',
-        qrcodeModalOptions: {
-            mobileLinks: ['metamask', 'trust']
-        }
-    }
-);
+let wcV2={
+    projectId:'061a7b5683a800c283e848fd640236c6',
+    requiredChains: [56],
+}
+// const walletConnect = walletConnectModule(
+//     {
+//        // projectId:'061a7b5683a800c283e848fd640236c6',
+//         bridge: 'https://bridge.walletconnect.org',
+//         qrcodeModalOptions: {
+//             mobileLinks: ['metamask', 'trust']
+//         }
+//     }
+// );
+const walletConnect=walletConnectModule(wcV2)
 const injected = injectedModule();
 
 const modules = [walletConnect, injected];
