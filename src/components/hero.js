@@ -357,7 +357,7 @@ const handleClose=()=>{
                   variant="filled"
                   size="medium"
                   fullWidth
-                  value={values.enteredValue * 15}
+                  value={values.enteredValue * 14}
                   className="textInput"
                   sx={{
                     background: theme.palette.secondary.main,
